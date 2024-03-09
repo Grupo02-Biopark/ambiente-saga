@@ -44,4 +44,4 @@ body:
     id: additional-information
     attributes:
       label: Observações
-      description: Se for o caso, alguma observação que deve ser levada em consideração para realização da tarefa.
+      description: Se for o caso, alguma observação que deve ser levada em consideração para realização da tarefa ou possiveis impedimentos.
