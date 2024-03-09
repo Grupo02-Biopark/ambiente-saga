@@ -18,7 +18,23 @@ body:
       description: Descrever oque essa tarefa vai solucionar.
     validations:
       required: true
+      
+  - type: textarea
+    id: requirement
+    attributes:
+      label: Requisitos atendidos
+      description: Preencher com o requisito principal e suas referências.
+    validations:
+      required: true
 
+  - type: textarea
+    id: business-rule
+    attributes:
+      label: Regra de negócio
+      description: Preencher a regra de negócio que deverá ser levada em consideração.
+    validations:
+      required: true
+      
   - type: textarea
     id: proposed-solution
     attributes:
