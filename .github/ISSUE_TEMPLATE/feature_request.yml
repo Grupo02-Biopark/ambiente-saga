@@ -1,6 +1,6 @@
 name: 💡 Requisição de Tarefa
 description: Levantamento de tarefas a serem realizadas durante o projeto.
-title: 'TAREFA: '
+title: '[NOME TAREFA]: Etapa '
 body:
 
   - type: textarea
