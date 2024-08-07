@@ -1,0 +1,120 @@
+body{
+    width: 100%;
+    min-height: 100vh;
+}
+
+.topSide{
+    width: 100%;
+    height:100%;
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.topSide .logo{
+    height: 70px;
+    width: 80px;
+}
+
+main{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formulario_topo{
+    display: flex;
+    flex-direction: column;
+}
+
+form.editar_formulario{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.formulario_topo label{
+    text-align: right;
+    text-transform: uppercase;
+    font-family: "Rubik", sans-serif;
+    font-size: 14px;
+    margin-bottom: .3rem;
+}
+input.inputTitulo{
+    justify-content: center;
+    padding: 0 .8rem;
+    max-width: 300px;
+    font-size: 16px;
+    border: 0;
+    border-bottom: 2px solid #818181;
+    cursor: text;
+    outline: 0;
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #818181;
+}
+
+.linha_header{
+    border-bottom: 2px solid #0077C8;
+    width: 95%;
+    margin: .8rem;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 1rem;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    z-index: 4;
+
+}
+
+.linha_footer{
+    border-bottom: 2px solid #808080;
+    width: 95%;
+    margin: .8rem;
+}
+
+button{
+    cursor: pointer;
+    height: 25px;
+    width: 150px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 20px;
+}
+button.btnCancelar{
+    margin-right: 10px;
+    background-color:#FFDBDB;
+    color: #B0522A;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 6px 0 rgba(0, 0, 0, 0.19);
+}
+
+button.btnSalvar{
+    margin-left: 10px;
+    background-color: #DBFFDC;
+    color: #35B02A;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 6px 0 rgba(0, 0, 0, 0.19);
+}
+.background{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, white 55%, transparent);
+    pointer-events: none;
+    z-index: 0;
+}

@@ -20,6 +20,7 @@ public class CertificadoController {
 
     @GetMapping("/certificado/{id}")
     public ModelAndView certificados(@PathVariable Long id){
+
         ModelAndView modelAndView = new ModelAndView();
         String resultado;
         String cor;
@@ -27,8 +28,7 @@ public class CertificadoController {
         Formulario form = repositoryFormulario.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Form não encontrado com o ID: " + id));
         double media = (repositoryResposta.contaResps(form)*100)/repositoryResposta.contaTodasResps(form);
-        //double media = repositoryResposta.contaResps(form.getId_formulario());
-        //double media = repositoryResposta.contaTodasResps(form.getId_formulario());
+
         if (media > 90){
             resultado = "Muito satisfatório";
             cor = "darkgreen";

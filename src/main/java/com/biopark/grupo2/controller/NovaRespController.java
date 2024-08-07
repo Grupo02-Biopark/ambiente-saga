@@ -1,5 +1,6 @@
 package com.biopark.grupo2.controller;
 
+import com.biopark.grupo2.model.Certificado;
 import com.biopark.grupo2.model.Empresa;
 import com.biopark.grupo2.model.Formulario;
 import com.biopark.grupo2.model.Pergunta;
@@ -7,7 +8,9 @@ import com.biopark.grupo2.repository.RepositoryCertificado;
 import com.biopark.grupo2.repository.RepositoryEmpresa;
 import com.biopark.grupo2.repository.RepositoryFormulario;
 import com.biopark.grupo2.repository.RepositoryPergunta;
+import com.biopark.grupo2.service.BuscaService;
 import com.biopark.grupo2.service.NovaRespService;
+import com.biopark.grupo2.service.NovoCertificadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +27,12 @@ public class NovaRespController {
     @Autowired
     private RepositoryEmpresa repositoryEmpresa;
     @Autowired
-    private RepositoryCertificado repositoryCertificado;
-    @Autowired
     private RepositoryPergunta repositoryPergunta;
+
+    @Autowired
+    private NovoCertificadoService novoCertificadoService;
+    @Autowired
+    private BuscaService buscaService;
 
     @GetMapping("/executarAvaliacao")
     public ModelAndView paginaNovaResposta(){
@@ -41,15 +47,23 @@ public class NovaRespController {
     NovaRespService novaRespService;
 
     @PostMapping("/novaAvaliacao")
-    public RedirectView criarResposta(@RequestParam("id_empresa")Long id_empresa,
-                                      @RequestParam("id_formulario")Long id_formulario){
-        repositoryCertificado.save(novaRespService.novoCertificado(encontraFormPorId(id_formulario), encontraEmpresaPorId(id_empresa)));
-        repositoryFormulario.save(novaRespService.novoFormulario(encontraFormPorId(id_formulario), encontraEmpresaPorId(id_empresa)));
-        List<Pergunta> perguntas = encontraPerguntasPeloFormId(id_formulario);
-        for (Pergunta pergunta : perguntas){
-            repositoryPergunta.save(novaRespService.todasRespostas(pergunta, pegaMaiorForm()));
-        }
-        return new RedirectView("/executarForm/" + pegaMaiorForm().getId_formulario());
+    public RedirectView criarResposta(@RequestParam("id_formulario")Long idFormulario,
+                                      @RequestParam("id_empresa")Long idEmpresa){
+
+        Formulario formulario = buscaService
+                .buscarFormulario(idFormulario);
+        Empresa empresa = buscaService
+                .buscarEmpresa(idEmpresa);
+
+        List<Pergunta> perguntas = formulario.getPerguntas();
+
+        Formulario novoFormulario = novaRespService
+                .novoFormulario(formulario,empresa,perguntas);
+
+//        repositoryCertificado.save(novaRespService.novoCertificado(encontraFormPorId(id_formulario), encontraEmpresaPorId(id_empresa)));
+//        repositoryFormulario.save(novaRespService.novoFormulario(encontraFormPorId(id_formulario), encontraEmpresaPorId(id_empresa), encontraPerguntasPeloFormId(id_formulario)));
+        String redirectUrl = String.format("/executarFormulario/%d?id_empresa=%d", novoFormulario.getId_formulario(), idEmpresa);
+        return new RedirectView(redirectUrl);
     }
     //Consultas
     public List<Formulario> todosFormularios(){

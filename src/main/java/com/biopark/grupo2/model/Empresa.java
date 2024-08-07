@@ -13,7 +13,7 @@ import lombok.*;
 public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_empresa;
+    private Long id_empresa;
     private String fantasia;
     private String razao_social;
     private String cnpj;

@@ -30,7 +30,8 @@ public class FormularioController {
         if (filter == "all") {
             estado = true; // ou qualquer valor padrão que faça sentido no seu contexto
         }
-        Page<Formulario> formulariosBase = formularioService.findFormulariosLista(page, size, filter, estado,searchTerm);
+        Page<Formulario> formulariosBase = formularioService
+                .findFormulariosLista(page, size, filter, estado,searchTerm);
         ModelAndView modelAndView = new ModelAndView("listaFormsBase");
         modelAndView.addObject("formulariosBase", formulariosBase);
         modelAndView.addObject("totalPages", formulariosBase.getTotalPages());
@@ -42,7 +43,8 @@ public class FormularioController {
     }
 
     @PostMapping("/listaFormsBase")
-    public RedirectView criarForm(@ModelAttribute ("formulario") Formulario formulario, RedirectAttributes attributes){
+    public RedirectView criarForm(
+            @ModelAttribute ("formulario") Formulario formulario, RedirectAttributes attributes){
         Formulario formularioSalvo = repositoryFormulario.save(formulario);
         attributes.addFlashAttribute("condition", "cadastro-ok");
         Long idFormulario = formularioSalvo.getId_formulario();

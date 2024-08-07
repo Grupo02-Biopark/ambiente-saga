@@ -55,12 +55,12 @@
 
             <tr th:each="certificado : ${avaliacoes}" class="listaForm">
                     <td id="andamento" th:classappend="${certificado.base == 1} ? 'progresso' : (${certificado.base == 2} ? 'concluida' : 'cancelada')">
-                    <td class="data" th:text="${#dates.format(certificado.ultimaMod, 'dd/MM/yyyy')}"></td>
+                <td class="date" th:text="${#dates.format(certificado.ultima_mod, 'dd/MM/yyyy')}"></td>
                     <td class="empresa" th:text="${certificado.fantasia}"></td>
                     <td class="usuario" th:text="${certificado.usuario}"></td>
                     <td>
                         <div class="button-container">
-                            <a th:href="@{'/executarForm/'+ ${certificado.id_formulario}}">
+                            <a th:href="@{'/executarFormulario/'+ ${certificado.id_formulario}}">
                                 <button class="editButton"></button>
                             </a>
                         </div>

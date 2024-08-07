@@ -9,6 +9,10 @@ form.criar_pergunta{
     max-width: 90%;
     border-radius: 10px;
     border: 1px solid #808080;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 input.inputPergunta{
@@ -35,6 +39,7 @@ form.criar_pergunta ::placeholder{
 
 #pergunta_salvar_sair{
     width: 100%;
+    max-width: 500px;
     padding-top: 2rem;
     display: flex;
     justify-content: space-between;

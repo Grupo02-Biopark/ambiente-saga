@@ -1,0 +1,14 @@
+<link rel="stylesheet" type="text/css" media="all" href="/styles/popusCSS/style_popup_confirmacao.css"/>
+<link rel="stylesheet" type="text/css" media="all" href="/styles/GeralCSS/reset.css"/>
+
+<div th:fragment="popup_confirmacao"></div>
+
+<div id="fade_confirmar" class="hide_confirmacao"></div>
+<div id="popup_confirmacao" class="hide_confirmacao">
+    <div class="body_popup_confirmacao">
+        <h2>Formulario respondido com sucesso!</h2>
+        <a th:href="@{'certificado/'+ ${formulario.id_formulario}}">
+            <button id="btn_confirmar_fragmento">Ver Certificado</button>
+        </a>
+    </div>
+</div>

@@ -20,5 +20,5 @@ public class Pergunta {
 
     @ManyToOne
     @JoinColumn(name = "id_formulario")
-    private Formulario id_formulario;
+    private Formulario formulario;
 }

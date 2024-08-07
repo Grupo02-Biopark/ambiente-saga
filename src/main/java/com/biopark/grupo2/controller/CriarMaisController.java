@@ -49,7 +49,7 @@ public class CriarMaisController {
     @PostMapping("/detalhesFormulario/{id}")
     public String criarPerguntas(@ModelAttribute("novaPergunta") Pergunta novaPergunta, @RequestParam("idFormulario") Long idFormulario, RedirectAttributes attributes){
         Formulario formulario = repositoryFormulario.findById(idFormulario).orElseThrow();
-        novaPergunta.setId_formulario(formulario);
+        novaPergunta.setFormulario(formulario);
         repositoryPergunta.save(novaPergunta);
         attributes.addFlashAttribute("cadastaPegunta", "perguntaCadastrada");
         return "redirect:/detalhesFormulario/" + idFormulario;

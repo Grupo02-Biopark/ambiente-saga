@@ -15,20 +15,24 @@ import java.util.Date;
 public class Resposta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_resposta;
-    private int resposta;
-    private String observacao;
+    private Long id_resposta;
+    private Integer resposta;
+    private Long id_usuario;
+    private Date ultima_mod;
+
+    @JoinColumn(name = "id_pergunta")
+    private Long id_pergunta;
+
+    @JoinColumn(name = "id_documento")
+    private Long id_documento;
+
     @ManyToOne
     @JoinColumn(name = "id_formulario")
-    private Formulario id_formulario;
+    private Formulario formulario;
     @ManyToOne
-    @JoinColumn(name = "id_pergunta")
-    private Pergunta id_pergunta;
+    @JoinColumn(name = "id_empresa")
+    private Empresa empresa;
     @ManyToOne
     @JoinColumn(name = "id_certificado")
-    private Certificado id_certificado;
-    @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario id_usuario;
-    private Date ultimaMod;
+    private Certificado certificado;
 }

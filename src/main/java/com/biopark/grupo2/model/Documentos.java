@@ -13,9 +13,9 @@ import lombok.*;
 public class Documentos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_documento;
-    private String url_documento;
-    private boolean validado;
+    private Long id_documento;
+    private String nomeDocumento;
+
     @ManyToOne
     @JoinColumn(name = "id_resposta")
     private Resposta id_resposta;

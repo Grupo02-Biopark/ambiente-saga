@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/Geral/logo_transparente.png" />
+  <title>SAGA - Responder Formulario</title>
+  <link rel="stylesheet" type="text/css" href="/styles/GeralCSS/reset.css">
+  <link rel="stylesheet" type="text/css" media="all" href="/styles/FormularioBaseCSS/styleExecutarFomulario.css">
+  <link rel="stylesheet" type="text/css" media="all" href="/styles/FormularioBaseCSS/styleCadastrarResposta.css">
+  <link rel="stylesheet" type="text/css" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script src="/scripts/formulariosJS/executarFormulario.js" defer></script>
+</head>
+<body>
+<section th:if="${condition}" th:insert="/pop_up/popupVerCertificado.html"></section>
+<section th:insert="/pop_up/popup_cancelar.html" id="fragmento_popup_cancelar"></section>
+<header class="topSide">
+  <img class="logo" src="/images/Geral/logo_transparente.png" alt="logo_empresa"/>
+</header>
+<main>
+  <form th:action="@{/executarFormulario}" th:object="${respostaDTO}" class="editar_formulario" method="post" enctype="multipart/form-data">
+    <div class="formulario_topo">
+      <input
+              type="text"
+              th:value="${tituloFormulario}"
+              class="inputTitulo"
+              required>
+    </div>
+    <div class="linha_header"></div>
+    <input
+            type="hidden"
+            th:field="*{id_formulario}"
+            th:value="${idFormulario}">
+    <input
+            type="hidden"
+            id="idEmpresa"
+            th:field="*{id_empresa}"
+            th:value="${idEmpresa}">
+    <input
+            type="hidden"
+            id="idCertificado"
+            th:field="*{id_certificado}"
+            th:value="${idCertificado}">
+    <input
+            type="hidden"
+            th:value="${baseFormulario}">
+    <input
+            id="estadoInput"
+            type="hidden"
+            th:value="${estadoFormulario}"
+            required>
+    <div class="footer">
+      <div class="linha_footer"></div>
+      <div class="botoes_footer">
+        <button
+                type="button"
+                id="cancelarResposta"
+                class="btnCancelar">
+          <strong>Cancelar</strong>
+        </button>
+        <button
+                class="btnSalvar"
+                type="submit">
+                Confirmar
+        </button>
+      </div>
+    </div>
+    <section class="listarPerguntas">
+      <div
+              th:each="pergunta, iter : ${perguntas}"
+              class="listaPergunta">
+        <input
+                type="hidden"
+                th:field="*{id_perguntas[__${iter.index}__]}"
+                th:value="${pergunta.id_pergunta}">
+        <div
+                class="tituloPergunta">
+          <a href="#">
+            <i class="fa-solid fa-chevron-down"></i>
+            <h3 th:text="${pergunta.titulo}"></h3>
+          </a>
+        </div>
+        <div class="perguntaContainer">
+          <div class="alternativasPerguntas">
+            <div class="checkbox-item">
+              <label
+                      th:for="'conforme_' + ${pergunta.id_pergunta}">
+                      Conforme
+                <input
+                        type="radio"
+                        th:id="'conforme_' + ${pergunta.id_pergunta}"
+                        th:name="respostas[__${pergunta.id_pergunta}__]"
+                        th:value="0"
+                        class="alternativa-radio">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="checkbox-item">
+              <label
+                      th:for="'nao-conforme_' + ${pergunta.id_pergunta}">Não Conforme
+                <input
+                        type="radio"
+                        th:id="'nao-conforme_' + ${pergunta.id_pergunta}"
+                        th:name="respostas[__${pergunta.id_pergunta}__]"
+                        th:value="1"
+                        class="alternativa-radio">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="checkbox-item">
+              <label
+                      th:for="'nao-se-aplica_' + ${pergunta.id_pergunta}">Não se Aplica
+                <input
+                        type="radio"
+                        th:id="'nao-se-aplica_' + ${pergunta.id_pergunta}"
+                        th:name="respostas[__${pergunta.id_pergunta}__]"
+                        th:value="2"
+                        class="alternativa-radio">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+          <div class="documentoPergunta">
+            <a href="#">
+              <i class="fa-solid fa-upload"></i>
+            </a>
+            <input
+                    type="text"
+                    name="nomesDocumentos"
+                    th:field="*{nomesDocumentos}"
+                    class="nomeDocumento">
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="background"></div>
+  </form>
+</main>
+</body>
+</html>
